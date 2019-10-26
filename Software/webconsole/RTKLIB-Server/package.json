@@ -27,7 +27,7 @@
     "compression": "^1.7.1",
     "express": "4.15.3",
     "node-arp": "github:drorgl/node-arp",
-    "serialport": "5.0.0-beta7",
+    "serialport": "7.1.5",
     "superagent": "3.5.2",
     "ts-lint": "4.5.1",
     "ts-node": "3.2.0",
