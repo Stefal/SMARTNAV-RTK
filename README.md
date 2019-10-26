@@ -1,7 +1,14 @@
+# This is a work inprogress but does compile webserver on RPi v3
+- Have not tested with RTK GPS and need to fix some file locations for RTKLIB and systemd services.
+- Code Contabutions Welcome
+
 # SMARTNAV-RTK
 Drotek SMARTNAV RTK - Hardware and Software
 
-Modified version to work on SBC by Dror Gluska
+Modified version to work on SBC by Dror Gluska at https://github.com/drorgl/SMARTNAV-RTK
+
+Modified and updated(slightly) version to work on RPi SBC by Aircool00
+- updated RTKLIB to rtklibexplorer RTKLIB master 
 
 Original Project by Drotek is at https://github.com/drotek/SMARTNAV-RTK
 
@@ -12,29 +19,49 @@ Have a look at our wiki for all the instructions! https://drotek.com/en/docs/
 
 
 # Installation
+- Install script for RPi included in base tested on raspbian buster lite
 
-## Building str2str and rtkrcv
-- install gyp from https://github.com/bnoordhuis/gyp
-- export GYP_PATH="$HOME/Projects/gyp/gyp" or set GYP_PATH="$HOME/Projects/gyp/gyp"
-- cd Software/rtklib-smartnav
-- execute bash build_linux.sh or build_windows.bat, for the moment it builds debug versions
-- copy the binaries (str2str and rtkrcv) from ./build.linux/out/Debug/ to ../binary/
+## Update / Upgrade Raspbian Image | Install needed software
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get install -y git npm
+sudo npm install pm2 -g
+sudo npm install prebuild-install -g
 
-## running RTKLIB-Server and RTKLIB-WebConsole
-- install pm2: npm install pm2 -g
+## Download SMARTNAV-RTK
+git clone https://github.com/aircool00/SMARTNAV-RTK.git
 
-cd RTKLIB-RTKRCV     && npm install && cd ..
-cd RTKLIB-Server     && npm install && cd ..
-cd RTKLIB-STR2STR    && npm install && cd ..
-cd RTKLIB-WebConsole && npm install && cd ..
+## Install rtklibexplorer RTKLIB
+git clone -b demo5 https://github.com/rtklibexplorer/RTKLIB.git
+cd ./RTKLIB/app/str2str/gcc/
+make
+cd ../../rtkrcv/gcc/
+make
 
-- pm2 start pm2production.yaml
+## Install RTKLIB-RTKRCV, RTKLIB-STR2STR, RTKLIB-SERVER, WebConsole Services
+### Ignore all warnings of outdated packages and security errors for now.
+cd SMARTNAV-RTK/Software/webconsole
+
+## Install RTKLIB-RTKRCV
+cd RTKLIB-RTKRCV && npm install && cd ..
+
+## Install RTKLIB-SERVER
+cd RTKLIB-Server && npm install && cd ..
+
+## Install RTKLIB-STR2STR
+cd RTKLIB-STR2STR && npm install && cd ..
+
+## Install WebConsole
+cd RTKLIB-WebConsole && npm install && cd .. 
+
+## Run Software
+cd SMARTNAV-RTK/Software/webconsole && pm2 start pm2production.yaml
 
 It should start 4 services, str2str monitoring, rtkrcv monitoring, a server and the webserver.
 
-If you wish to see the logs:
+## If you wish to see the logs:
 pm2 logs
 
+## Web Server address
+http://localhost:8080/ 
 
 # Configuration
 config.js
@@ -44,7 +71,7 @@ config.js
 
 
 # Todo:
-- add simple vector map to show the general place or google maps
+- need to add a survey option to work on surveys
 - document all settings, either from documentation or from https://rtklibexplorer.wordpress.com/2016/09/22/rtklib-customizing-the-input-configuration-file/
 # References
 - RTKLib Documentation - http://www.rtklib.com/prog/manual_2.4.2.pdf

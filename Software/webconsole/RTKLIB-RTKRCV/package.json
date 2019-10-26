@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "rtkrcv wrapper",
   "repository": {
-    "url": "https://github.com/drorgl/SMARTNAV-RTK"
+    "url": "https://github.com/aircool00/SMARTNAV-RTK"
   },
   "main": "index.js",
   "scripts": {

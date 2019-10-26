@@ -4,7 +4,7 @@
   "description": "rtklib web interface",
   "main": "index.js",
   "repository": {
-    "url": "https://github.com/drorgl/SMARTNAV-RTK"
+    "url": "https://github.com/aircool00/SMARTNAV-RTK"
   },
   "contributors": [
     "Dror Gluska"
