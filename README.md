@@ -53,7 +53,9 @@ cd RTKLIB-STR2STR && npm install && cd ..
 cd RTKLIB-WebConsole && npm install && cd .. 
 
 ## Run Software
-cd SMARTNAV-RTK/Software/webconsole && pm2 start pm2production.yaml
+cd SMARTNAV-RTK/Software/webconsole
+
+pm2 start pm2production.yaml
 
 It should start 4 services, str2str monitoring, rtkrcv monitoring, a server and the webserver.
 
