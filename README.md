@@ -1,6 +1,6 @@
 ## This is a work inprogress but does compile webserver on RPi v3
 - Have not tested with RTK GPS and need to fix some file locations for RTKLIB and systemd services.
-- Code Contabutions Welcome
+- Code Contributions Welcome
 
 # SMARTNAV-RTK
 Drotek SMARTNAV RTK - Hardware and Software
